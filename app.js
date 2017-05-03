@@ -14,7 +14,7 @@ function displayBoard(square) {
   return '<div class="game"><span class="instructions">Whoever wants to play as X should click their first square now!</span>' + 
          '<div class="square zero">'+ square[0] + '</div><div class="square one">' + square[1] + '</div><div class="square two">' + square[2] + '</div>' + 
          '<div class="square three">' + square[3] + '</div><div class="square four">' + square[4] + '</div><div class="square five">' + square[5] + '</div>' + 
-         '<div class="square six">' + square[6] + '</div><div class="square seven">' + square[7] + '</div><div class="square eight">' + square[8] + '</div><div class="the-winner"></div></div>';
+         '<div class="square six">' + square[6] + '</div><div class="square seven">' + square[7] + '</div><div class="square eight">' + square[8] + '</div></div>';
 }
 
 
@@ -23,21 +23,21 @@ function winning(square) {
 
   var winner = 0;
 
-  if ((square[0] === square[1]) && (square[1] === square[2]))
+  if ((square[0] === square[1]) && (square[1] === square[2]) && (square[2] != '0'))
     winner = square[0];
-  else if ((square[0] === square[4]) && (square[4] === square[8]))
+  else if ((square[0] === square[4]) && (square[4] === square[8]) && (square[8] != '0'))
     winner = square[0];
-  else if ((square[0] === square[3]) && (square[3] === square[6]))
+  else if ((square[0] === square[3]) && (square[3] === square[6]) && (square[6] != '0'))
     winner = square[0];
-  else if ((square[1] === square[4]) && (square[4] === square[7]))
+  else if ((square[1] === square[4]) && (square[4] === square[7]) && (square[7] != '0'))
     winner = square[1];
-  else if ((square[2] === square[4]) && (square[4] === square[6]))
+  else if ((square[2] === square[4]) && (square[4] === square[6]) && (square[6] != '0'))
     winner = square[2];
-  else if ((square[2] === square[5]) && (square[5] === square[8]))
+  else if ((square[2] === square[5]) && (square[5] === square[8]) && (square[8] != '0'))
     winner = square[2];
-  else if ((square[3] === square[4]) && (square[4] === square[5]))
+  else if ((square[3] === square[4]) && (square[4] === square[5]) && (square[5] != '0'))
     winner = square[3];
-  else if ((square[6] === square[7]) && (square[7] === square[8]))
+  else if ((square[6] === square[7]) && (square[7] === square[8]) && (square[8] != '0'))
     winner = square[6];
 
   return winner;
@@ -99,25 +99,26 @@ function startTheGame () {
     winner = winning(square);
 
     if ((winner === 'X') || (winner === 'O')) {
-      $('footer').html('<p>' + winning(square) + ' is the winner!<br />Would you like to play again?</p><p><button type="submit" name="resetGame" class="resetGame">Play Again!</button></p>');
+      $('.games').html('<p>' + winning(square) + ' is the winner!<br />Would you like to play again?</p><p><button type="submit" name="resetGame" class="resetGame">Play Again!</button></p>');
     }
 
     if (winner === 'X')
-      $('footer').addClass('x');
+      $('.games').addClass('x');
     else if (winner === 'O')
-      $('footer').addClass('o');
+      $('.games').addClass('o');
 
   });
 
   // listen for clicks on resetGame and reset the game
-  $('footer').on('click', '.resetGame', function(event) {
+  $('.games').on('click', '.resetGame', function(event) {
     event.preventDefault;
 
     CURRENT_TURN = 'X';
     square = initializeBoard();
     $('.instructions').removeClass('invisible');
     $('.games').html(displayBoard(square));
-    $('footer').html('');
+    $('.games').removeClass('x');
+    $('.games').removeClass('o');
 
   });
 }

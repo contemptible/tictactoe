@@ -14,7 +14,7 @@ body {
 .square {
   width: 33.3333%;
   color: white;
-  font-size: 750%;
+  font-size: 150px;
   display: inline-block;
   text-align: center;
 }
@@ -23,6 +23,7 @@ body {
   font-family: 'PT Sans Narrow', sans-serif;
   display: block;
   text-align: center;
+  padding: 10px;
 }
 
 .backdrop {
@@ -104,7 +105,7 @@ h1 {
   margin-bottom: 0px;
 }
 
-h2, footer {
+h2, p {
   font-family: 'PT Sans Narrow', sans-serif;
   font-size: 25px;
   font-weight: normal;
