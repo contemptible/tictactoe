@@ -46,6 +46,7 @@ function winning(square) {
 
 function startTheGame () {
   var square = initializeBoard();
+  var winner;
 
   $('main').on('click', '.newGame', function(event) {
     event.preventDefault;
@@ -59,6 +60,8 @@ function startTheGame () {
   // listen for clicks on squares and put the current symbol in the square
   $('main').on('click', '.square', function(event) {
     event.preventDefault;
+
+    $('.instructions').addClass('invisible');
 
     if ($(this).html() === '0')
     {
@@ -93,20 +96,28 @@ function startTheGame () {
       }
     }
 
-    if ((winning(square) === 'X') || (winning(square) === 'O')) {
-      $('footer').html(winning(square) + ' is the winner!<br />Would you like to play again?<br /><button type="submit" name="resetGame" class="resetGame">Play Again!</button>');
+    winner = winning(square);
+
+    if ((winner === 'X') || (winner === 'O')) {
+      $('footer').html('<p>' + winning(square) + ' is the winner!<br />Would you like to play again?</p><p><button type="submit" name="resetGame" class="resetGame">Play Again!</button></p>');
     }
+
+    if (winner === 'X')
+      $('footer').addClass('x');
+    else if (winner === 'O')
+      $('footer').addClass('o');
 
   });
 
   // listen for clicks on resetGame and reset the game
-  $('main').on('click', '.resetGame', function(event) {
+  $('footer').on('click', '.resetGame', function(event) {
     event.preventDefault;
 
+    CURRENT_TURN = 'X';
     square = initializeBoard();
+    $('.instructions').removeClass('invisible');
     $('.games').html(displayBoard(square));
-
-    console.log(square);
+    $('footer').html('');
 
   });
 }
