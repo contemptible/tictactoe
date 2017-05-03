@@ -4,7 +4,6 @@
 
 body {
   font-family: 'Baloo', sans-serif;
-  background-color: lightblue;
 }
 
 .game {
@@ -31,8 +30,6 @@ body {
 }
 
 .backdrop {
-  border: 4px dotted blue;
-  border-radius: 10px;
   width: 75%;
   margin-left: auto;
   margin-right: auto;
@@ -40,12 +37,16 @@ body {
   margin-top: 20px;
 }
 
-.x {
+.x, footer {
   color: red;
 }
 
 .o {
   color: blue;
+}
+
+.invisible {
+  display: none;
 }
 
 h1 {
@@ -55,7 +56,7 @@ h1 {
   margin-bottom: 0px;
 }
 
-h2 {
+h2, footer {
   font-family: 'PT Sans Narrow', sans-serif;
   font-size: 25px;
   font-weight: normal;
@@ -64,7 +65,7 @@ h2 {
   margin: 0px;
 }
 
-button, footer {
+button {
   font-family: 'PT Sans Narrow', sans-serif;
   text-align: center;
   margin-bottom: 10px;
